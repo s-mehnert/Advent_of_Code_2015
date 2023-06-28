@@ -10,17 +10,17 @@ input_data = None
 with open("05_nice_strings_input.txt") as input:
     input_data = input.readlines()
 
-strings = [string.strip("\n") for string in input_data]
+input_strings = [string.strip("\n") for string in input_data]
 
-for string in strings:
+for string in input_strings:
     print(string)
 
 # define function to find out if a string is nice or naughty
 
 def has_three_vowels(string):
     true_count = 0
-    for char in "aeiou":
-        if char in string:
+    for char in string:
+        if char in "aeiou":
             true_count += 1
     if true_count >= 3:
         return True
@@ -38,9 +38,20 @@ def has_no_forbidden_strings(string):
             return False
     return True
 
+def is_nice_string(string):
+    return has_three_vowels(string) and has_double_letter(string) and has_no_forbidden_strings(string)
+
+
+# count number of nice strings
+
+for string in input_strings:
+    print(is_nice_string(string))
+
+
+print(f"\nThere are {len([string for string in input_strings if is_nice_string(string)])} nice strings in the list")
+
 
 # Testing
 
-print(has_three_vowels(strings[0]))
-print(has_double_letter(strings[0]))
-print(has_no_forbidden_strings(strings[0]))
+
+
