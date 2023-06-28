@@ -51,6 +51,15 @@ for string in input_strings:
 print(f"\nThere are {len([string for string in input_strings if is_nice_string(string)])} nice strings in the list")
 
 
+#****************** Part 2 *****
+
+
+# create helper function to find repeating pair (pattern search)
+
+# create helper function to find repeating letter with one in between
+
+# count new number of nice strings
+
 # Testing
 
 
