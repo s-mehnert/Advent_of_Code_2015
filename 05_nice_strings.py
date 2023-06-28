@@ -54,13 +54,21 @@ print(f"\nThere are {len([string for string in input_strings if is_nice_string(s
 #****************** Part 2 *****
 
 
-# create helper function to find repeating pair (pattern search)
+# create helper function to find repeating pair (pattern search - naive approach)
 
 # create helper function to find repeating letter with one in between
 
+def has_spaced_double_letter(string):
+    for i in range(len(string)-2):
+        if string[i] == string[i+2]:
+            return True
+    return False
+
 # count new number of nice strings
+
 
 # Testing
 
-
+for string in input_strings:
+    print(has_spaced_double_letter(string))
 
