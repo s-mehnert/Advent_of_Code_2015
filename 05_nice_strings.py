@@ -17,4 +17,30 @@ for string in strings:
 
 # define function to find out if a string is nice or naughty
 
+def has_three_vowels(string):
+    true_count = 0
+    for char in "aeiou":
+        if char in string:
+            true_count += 1
+    if true_count >= 3:
+        return True
+    return False
 
+def has_double_letter(string):
+    for i in range(len(string)-1):
+        if string[i] == string[i+1]:
+            return True
+    return False
+
+def has_no_forbidden_strings(string):
+    for element in ["ab", "cd", "pq", "xy"]:
+        if element in string:
+            return False
+    return True
+
+
+# Testing
+
+print(has_three_vowels(strings[0]))
+print(has_double_letter(strings[0]))
+print(has_no_forbidden_strings(strings[0]))
