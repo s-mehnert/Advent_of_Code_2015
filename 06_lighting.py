@@ -27,9 +27,6 @@ for line in input_data:
     locs = tuple(tuple(int(pos) for pos in loc.split(",")) for loc in locs)  
     instructions.append((instr, locs))
 
-for instr in instructions:
-    print(instr)
-
 # create light bulb class with status on or off
 
 class LightBulb:
@@ -66,7 +63,7 @@ def print_bulb_grid(grid):
         print()
     print()
 
-bulb_grid = create_bulb_grid(10, 10)
+bulb_grid = create_bulb_grid(1000, 1000)
 
 # process instructions
 
@@ -83,12 +80,9 @@ def process_instruction(instr, grid):
                 grid[i][j] = "#"
     return grid
 
-print_bulb_grid(bulb_grid)
-
 new_grid = None
 for instr in instructions:
     new_grid = process_instruction(instr, bulb_grid)
-    print_bulb_grid(new_grid)
 
 # count light bulbs that are switched on
 
@@ -102,4 +96,15 @@ def count_bulbs_on(grid):
 
 total_bulbs_on = count_bulbs_on(new_grid)
 
-print(total_bulbs_on)
+print(f"\nAfter carrying out all instructions {total_bulbs_on} light bulbs are switched on.")
+
+
+
+#****************** Part 2 *****
+
+
+# update LightBulb class to record the brightness
+
+# create function to process instructions according to changed rules
+
+# calculate the total brightness of all light bulbs
