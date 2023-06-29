@@ -32,10 +32,74 @@ for instr in instructions:
 
 # create light bulb class with status on or off
 
-# create method to toggle status of light bulb
+class LightBulb:
+    def __init__(self, on=False):
+        self.on = on
+    
+    def __repr__(self):
+        if self.on:
+            return " * "
+        return " . "
+    
+    def turn_on(self):
+        self.on = True
+    
+    def turn_off(self):
+        self.on = False
+    
+    def toggle(self):
+        if self.on:
+            self.on = False
+        else:
+            self.on = True
 
 # create grid filled with light bulbs
 
+def create_bulb_grid(rows, cols):
+    return [[LightBulb() for j in range(cols)] for i in range(rows)]
+
+def print_bulb_grid(grid):
+    print()
+    for row in grid:
+        for col in row:
+            print(col, end="")
+        print()
+    print()
+
+bulb_grid = create_bulb_grid(10, 10)
+
 # process instructions
 
-# calculate result
+def process_instruction(instr, grid):
+    for i in range(instr[1][0][1], instr[1][1][1]+1):
+        for j in range(instr[1][0][0], instr[1][1][0]+1):
+            if instr[0] == "on":
+                grid[i][j].turn_on()
+            elif instr[0] == "off":
+                grid[i][j].turn_off()
+            elif instr[0] == "toggle":
+                grid[i][j].toggle()
+            else:
+                grid[i][j] = "#"
+    return grid
+
+print_bulb_grid(bulb_grid)
+
+new_grid = None
+for instr in instructions:
+    new_grid = process_instruction(instr, bulb_grid)
+    print_bulb_grid(new_grid)
+
+# count light bulbs that are switched on
+
+def count_bulbs_on(grid):
+    count = 0
+    for row in grid:
+        for bulb in row:
+            if bulb.on:
+                count += 1
+    return count
+
+total_bulbs_on = count_bulbs_on(new_grid)
+
+print(total_bulbs_on)
