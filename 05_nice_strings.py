@@ -38,15 +38,10 @@ def has_no_forbidden_strings(string):
             return False
     return True
 
-def is_nice_string(string):
-    return has_three_vowels(string) and has_double_letter(string) and has_no_forbidden_strings(string)
-
-
 # count number of nice strings
 
-for string in input_strings:
-    print(is_nice_string(string))
-
+def is_nice_string(string):
+    return has_three_vowels(string) and has_double_letter(string) and has_no_forbidden_strings(string)
 
 print(f"\nThere are {len([string for string in input_strings if is_nice_string(string)])} nice strings in the list")
 
@@ -55,6 +50,13 @@ print(f"\nThere are {len([string for string in input_strings if is_nice_string(s
 
 
 # create helper function to find repeating pair (pattern search - naive approach)
+
+def has_pair_twice(string):
+    for i in range(len(string)-3):
+        if string[i:i+2] in string[i+2:]:
+            return True
+    return False
+
 
 # create helper function to find repeating letter with one in between
 
@@ -66,9 +68,12 @@ def has_spaced_double_letter(string):
 
 # count new number of nice strings
 
+def is_nice_string_now(string):
+    return has_pair_twice(string) and has_spaced_double_letter(string)
+
+print(f"\nNow, there are {len([string for string in input_strings if is_nice_string_now(string)])} nice strings in the list")
 
 # Testing
 
-for string in input_strings:
-    print(has_spaced_double_letter(string))
+
 
