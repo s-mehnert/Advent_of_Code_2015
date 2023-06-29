@@ -105,6 +105,42 @@ print(f"\nAfter carrying out all instructions {total_bulbs_on} light bulbs are s
 
 # update LightBulb class to record the brightness
 
+class LightBulbPlus:
+    def __init__(self, brightness=0):
+        self.brightness = brightness
+    
+    def __repr__(self):
+        return self.brightness
+    
+    def turn_on(self):
+        self.brightness += 1
+    
+    def turn_off(self):
+        if self.brightness > 0:
+            self.brightness -= 1
+    
+    def toggle(self):
+        self.brightness += 2
+
+# create grid with new light bulbs
+
+bulb_grid_plus = [[LightBulbPlus() for j in range(1000)] for i in range(1000)]
+
 # create function to process instructions according to changed rules
 
+new_grid_plus = None
+for instr in instructions:
+    new_grid_plus = process_instruction(instr, bulb_grid_plus)
+
 # calculate the total brightness of all light bulbs
+
+def calculate_total_brightness(grid):
+    brightness = 0
+    for row in grid:
+        for bulb in row:
+            brightness += bulb.brightness
+    return brightness
+
+total_bulb_brightness = calculate_total_brightness(new_grid_plus)
+
+print(f"\nAfter carrying out all instructions the brightness of all bulbs sums up to a total value of {total_bulb_brightness}.")
